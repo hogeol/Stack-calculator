@@ -25,7 +25,7 @@ namespace nStack {
 			}
 		}
 	}
-	//Stack¿¡ ¿ø¼Ò pushÇÏ´Â ÇÔ¼ö
+	//Stackì— ì›ì†Œ pushí•˜ëŠ” í•¨ìˆ˜
 	Node* Stack::Create_stack(char* data)
 	{
 		Node* _newStack = (Node*)malloc(sizeof(Node));
@@ -45,7 +45,7 @@ namespace nStack {
 		mtop = node;
 	}
 
-	//POPÇÑ À§Ä¡¿¡ ÀÖ´ø ³ëµå »èÁ¦
+	//POPí•œ ìœ„ì¹˜ì— ìˆë˜ ë…¸ë“œ ì‚­ì œ
 	void Stack::Destroy_node(Node* deleteNode)
 	{
 		if (deleteNode != nullptr) {
@@ -62,7 +62,7 @@ namespace nStack {
 			Destroy_node(_popNode);
 		}
 	}
-	//StackÀÇ ¸¶Áö¸·¿¡ µé¾î¿Â ¿ø¼Ò¸¦ POPÇÏ´Â ÇÔ¼ö
+	//Stackì˜ ë§ˆì§€ë§‰ì— ë“¤ì–´ì˜¨ ì›ì†Œë¥¼ POPí•˜ëŠ” í•¨ìˆ˜
 	Node* Stack::Pop()
 	{
 		Node* _popNode = mtop;
@@ -79,12 +79,12 @@ namespace nStack {
 		}
 		return _popNode;
 	}
-	//ÇöÀç topÀÇ À§Ä¡¸¦ Ã£´Â ÇÔ¼ö
+	//í˜„ì¬ topì˜ ìœ„ì¹˜ë¥¼ ì°¾ëŠ” í•¨ìˆ˜
 	Node* Stack::Get_top()
 	{
 		return mtop;
 	}
-	//StackÀÌ ºñ¾îÀÖ´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+	//Stackì´ ë¹„ì–´ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
 	bool Stack::Isempty()
 	{
 		return (mbegin == nullptr && mtop == nullptr);
