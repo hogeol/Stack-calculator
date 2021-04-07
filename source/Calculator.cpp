@@ -3,13 +3,13 @@
 #include "Calculator.hpp"
 
 namespace nStack {
-	/*     ¿ì¼±¼øÀ§´Â
-		   *, / = 1¼øÀ§
-	*      +, - = 2¼øÀ§
-	*         ( = 3¼øÀ§
-	*      ÀÌ´Ù.
-	*      ¿ì¼±¼øÀ§´Â ÀÌ·ĞÀûÀ¸·Î´Â ¾Ë°í ÀÖ¾úÀ¸³ª, ¿ì¼±¼øÀ§¸¦ ±¸ÇÏ´Â ÇÔ¼ö¸¦ ±¸ÇöÇÏÁö ¸øÇÏ¿´½À´Ï´Ù.
-	*      ¿ì¼±¼øÀ§ ±¸ÇÏ´Â ÇÔ¼ö¸¦ ±¸ÇöÇÏ±â Èûµé¾î¼­ ±¸±Û°Ë»ö¿¡¼­ º¸°í Çß½À´Ï´Ù. IspriorÇÔ¼ö´Â ÀÌÇØ°¡ µÇÁö ¾Ê½À´Ï´Ù.
+	/*     ìš°ì„ ìˆœìœ„ëŠ”
+		   *, / = 1ìˆœìœ„
+	*      +, - = 2ìˆœìœ„
+	*         ( = 3ìˆœìœ„
+	*      ì´ë‹¤.
+	*      ìš°ì„ ìˆœìœ„ëŠ” ì´ë¡ ì ìœ¼ë¡œëŠ” ì•Œê³  ìˆì—ˆìœ¼ë‚˜, ìš°ì„ ìˆœìœ„ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜ë¥¼ êµ¬í˜„í•˜ì§€ ëª»í•˜ì˜€ìŠµë‹ˆë‹¤.
+	*      ìš°ì„ ìˆœìœ„ êµ¬í•˜ëŠ” í•¨ìˆ˜ë¥¼ êµ¬í˜„í•˜ê¸° í˜ë“¤ì–´ì„œ êµ¬ê¸€ê²€ìƒ‰ì—ì„œ ë³´ê³  í–ˆìŠµë‹ˆë‹¤. Ispriorí•¨ìˆ˜ëŠ” ì´í•´ê°€ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 	*/
 	int Calculator::Get_priority(char operate, int exist)
 	{
@@ -40,7 +40,7 @@ namespace nStack {
 	{
 		return (Get_priority(operation_1, 1) < Get_priority(operation_2, 0));
 	}
-	//½ºÅÃ¿¡ ÀÖ´Â ¹®ÀÚ°¡ ¼ıÀÚ(ÇÇ¿¬»êÀÚ)ÀÎÁö ¿¬»êÀÚÀÎÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+	//ìŠ¤íƒì— ìˆëŠ” ë¬¸ìê°€ ìˆ«ì(í”¼ì—°ì‚°ì)ì¸ì§€ ì—°ì‚°ìì¸ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
 	bool Calculator::Isnum(char sign)
 	{
 		for (int i = 0; i < sizeof(mnumber); i++)
@@ -55,7 +55,7 @@ namespace nStack {
 		int i = 0;
 		for (i = 0; postfix[i] != NULL; i++)
 		{
-			//ÇöÀçÀÇ ¹®ÀÚ°¡ ¼ıÀÚ(ÇÇ¿¬»êÀÚ)ÀÎÁö °è»ê
+			//í˜„ì¬ì˜ ë¬¸ìê°€ ìˆ«ì(í”¼ì—°ì‚°ì)ì¸ì§€ ê³„ì‚°
 			if (Isnum(postfix[i]) == true) {
 				type = static_cast<int>(sign::OPERAND);
 				value[i] = postfix[i];
@@ -63,7 +63,7 @@ namespace nStack {
 					break;
 			}
 			else {
-				//- °è»ê¿¡ ¿À·ù°¡ ÀÖ¾î NEGATIVE¸¦ Ãß°¡ÇÏ¿© À½¼ö°ªÀ» +(-X)·Î º¯È¯ÇÏ¿© °è»êÇÏ±â À§ÇÑ ¾Ë°í¸®Áò
+				//- ê³„ì‚°ì— ì˜¤ë¥˜ê°€ ìˆì–´ NEGATIVEë¥¼ ì¶”ê°€í•˜ì—¬ ìŒìˆ˜ê°’ì„ +(-X)ë¡œ ë³€í™˜í•˜ì—¬ ê³„ì‚°í•˜ê¸° ìœ„í•œ ì•Œê³ ë¦¬ì¦˜
 				type = postfix[i];
 				value[i] = postfix[i];
 				if (type == static_cast<int>(sign::MINUS)) {
@@ -90,11 +90,11 @@ namespace nStack {
 				break;
 			}
 		}
-		//¹®ÀÚ¿­ÀÇ ¸¶Áö¸· ÀÎµ¦½º´Â NULLÀÌ¹Ç·Î positionÀ» ±¸ÇÏ±â Àü ¸¶Áö¸· ÀÎµ¦½º¿¡ NULLÀ» ³Ö¾îÁÖ¾î¾ß ÇÑ´Ù.
+		//ë¬¸ìì—´ì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ëŠ” NULLì´ë¯€ë¡œ positionì„ êµ¬í•˜ê¸° ì „ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ì— NULLì„ ë„£ì–´ì£¼ì–´ì•¼ í•œë‹¤.
 		value[++i] = '\0';
 		return i;
 	}
-	//ÁßÀ§Ç¥±â½ÄÀ» ÈÄÀ§Ç¥±â½ÄÀ¸·Î º¯È¯ÇÏ´Â ÇÔ¼ö
+	//ì¤‘ìœ„í‘œê¸°ì‹ì„ í›„ìœ„í‘œê¸°ì‹ìœ¼ë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
 	void Calculator::Get_post_fix(char* infixValue, char* postfixValue)
 	{
 		Stack _stack;
@@ -109,7 +109,7 @@ namespace nStack {
 			_position += Get_next_value(&infixValue[_position], _value, _type);
 			if (_type == static_cast<int>(sign::SPACE) || _type == -1 || _type == NULL)
 				continue;
-			//ÇÇ¿¬»êÀÚÀÌ¸é Ãâ·ÂÇÑ´Ù.
+			//í”¼ì—°ì‚°ìì´ë©´ ì¶œë ¥í•œë‹¤.
 			if (_type == static_cast<int>(sign::OPERAND)) {
 				_flag = 0;
 				strcat(postfixValue, _value);
@@ -130,23 +130,23 @@ namespace nStack {
 				strcat(postfixValue, " ");
 				_flag = 0;
 			}
-			//¿À¸¥ÂÊ °ıÈ£¸¦ ¸¸³ª¸é
+			//ì˜¤ë¥¸ìª½ ê´„í˜¸ë¥¼ ë§Œë‚˜ë©´
 			else if (_type == static_cast<int>(sign::RIGHT_PARENTHESES)) {
-				//¿ŞÂÊ °ıÈ£¸¦ ¸¸³ª±â Àü±îÁö ½ºÅÃÀÇ µ¥ÀÌÅÍµéÀ» Á¦°ÅÇÑ ÈÄ Ãâ·ÂÇÏ°í
+				//ì™¼ìª½ ê´„í˜¸ë¥¼ ë§Œë‚˜ê¸° ì „ê¹Œì§€ ìŠ¤íƒì˜ ë°ì´í„°ë“¤ì„ ì œê±°í•œ í›„ ì¶œë ¥í•˜ê³ 
 				while (_stack.Get_top()->mdata[0] != (static_cast<int>(sign::LEFT_PARENTHESES))) {
 					_popNode = _stack.Pop();
 					strcat(postfixValue, _popNode->mdata);
 					strcat(postfixValue, " ");
 					_stack.Destroy_node(_popNode);
 				}
-				//¿ŞÂÊ °ıÈ£¸¦ ¸¸³ª¸é °ıÈ£¸¦ »èÁ¦ÇÑ´Ù.
+				//ì™¼ìª½ ê´„í˜¸ë¥¼ ë§Œë‚˜ë©´ ê´„í˜¸ë¥¼ ì‚­ì œí•œë‹¤.
 				_popNode = _stack.Pop();
 				_stack.Destroy_node(_popNode);
 				_popNode = nullptr;
 			}
-			//´ÙÀ½ ¹®ÀÚ°¡ ¿¬»êÀÚÀÌ¸é
+			//ë‹¤ìŒ ë¬¸ìê°€ ì—°ì‚°ìì´ë©´
 			else {
-				//½ºÅÃÀÌ ºñ¾îÀÖÁö ¾Ê°í, ½ºÅÃÀÇ ÃÖ»óÀ§³ëµåÀÇ ¹®ÀÚ¸¦ ½ºÅÃ¿¡¼­ Á¦°ÅÇÑ ÈÄ Ãâ·ÂÇÏ°í
+				//ìŠ¤íƒì´ ë¹„ì–´ìˆì§€ ì•Šê³ , ìŠ¤íƒì˜ ìµœìƒìœ„ë…¸ë“œì˜ ë¬¸ìë¥¼ ìŠ¤íƒì—ì„œ ì œê±°í•œ í›„ ì¶œë ¥í•˜ê³ 
 				_flag = 1;
 				while (!_stack.Isempty() && Isprior(_stack.Get_top()->mdata[0], _value[0])) {
 					_popNode = _stack.Pop();
@@ -154,27 +154,27 @@ namespace nStack {
 					strcat(postfixValue, " ");
 					_stack.Destroy_node(_popNode);
 				}
-				//´ÙÀ½ ¹®ÀÚ¸¦ ½ºÅÃ¿¡ pushÇÑ´Ù
+				//ë‹¤ìŒ ë¬¸ìë¥¼ ìŠ¤íƒì— pushí•œë‹¤
 				_stack.Push(_stack.Create_stack(_value));
 				_popNode = nullptr;
 			}
-			//´ÙÀ½ °è»êÀ» À§ÇØ º¯¼ö¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+			//ë‹¤ìŒ ê³„ì‚°ì„ ìœ„í•´ ë³€ìˆ˜ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 			memset(_value, 0, strlen(infixValue) + 1);
 			_type = -1;
 		}
-		//½ºÅÃ¿¡ ³²Àº ¿¬»êÀÚµéÀ» Ãâ·ÂÇÑ´Ù.
+		//ìŠ¤íƒì— ë‚¨ì€ ì—°ì‚°ìë“¤ì„ ì¶œë ¥í•œë‹¤.
 		while (!_stack.Isempty()) {
 			_popNode = _stack.Pop();
 			strcat(postfixValue, _popNode->mdata);
 			strcat(postfixValue, " ");
 			_stack.Destroy_node(_popNode);
 		}
-		//Ãâ·ÂÀ» ´Ù ÇÑ ÈÄ ½ºÅÃÀ» Áö¿î´Ù.
+		//ì¶œë ¥ì„ ë‹¤ í•œ í›„ ìŠ¤íƒì„ ì§€ìš´ë‹¤.
 		_stack.Destroy_stack();
 		free(_value);
 	}
 
-	//ÈÄÀ§Ç¥±â½ÄÀ¸·Î º¯È¯ÇÑ ¼ö½ÄÀ» °è»êÇÏ´Â ÇÔ¼ö
+	//í›„ìœ„í‘œê¸°ì‹ìœ¼ë¡œ ë³€í™˜í•œ ìˆ˜ì‹ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
 	double Calculator::Calculate(char* postfixvalue)
 	{
 		Stack _stack;
@@ -189,16 +189,16 @@ namespace nStack {
 			_position += Get_next_value(&postfixvalue[_position], _value, _type);
 			if (_type == -1 || _type == static_cast<int>(sign::SPACE) || _type == NULL)
 				continue;
-			//ÇöÀç ¹®ÀÚ°¡ ¼ıÀÚ(ÇÇ¿¬»êÀÚ)ÀÌ¸é
+			//í˜„ì¬ ë¬¸ìê°€ ìˆ«ì(í”¼ì—°ì‚°ì)ì´ë©´
 			if (_type == static_cast<int>(sign::OPERAND) || _type == static_cast<int>(sign::NEGATIVE))
-				//½ºÅÃ¿¡ pushÇÑ´Ù.
+				//ìŠ¤íƒì— pushí•œë‹¤.
 				_stack.Push(_stack.Create_stack(_value));
-			//ÇöÀç ¹®ÀÚ°¡ ¿¬»êÀÚÀÌ¸é
+			//í˜„ì¬ ë¬¸ìê°€ ì—°ì‚°ìì´ë©´
 			else {
 				Node* _ntmp1 = _stack.Pop();
 				Node* _ntmp2 = _stack.Pop();
 				double _Rtmp = 0;
-				//¿¬»êÀÚÀÇ Å¸ÀÔ¿¡ µû¶ó ½ºÅÃ ÃÖ»óÀ§ÀÇ 2°³ÀÇ °ªÀ» °è»êÇÑ´Ù.
+				//ì—°ì‚°ìì˜ íƒ€ì…ì— ë”°ë¼ ìŠ¤íƒ ìµœìƒìœ„ì˜ 2ê°œì˜ ê°’ì„ ê³„ì‚°í•œë‹¤.
 				switch (_type) {
 					case static_cast<int>(sign::MULTIPLY) : {
 						_Rtmp = atof(_ntmp2->mdata) * atof(_ntmp1->mdata);
@@ -217,9 +217,9 @@ namespace nStack {
 						break;
 					}
 				}
-				//doubleÇüÀ¸·Î ÀúÀåÇÑ °è»ê°á°ú¸¦ charÇüÀ¸·Î º¯È¯ÇÑ´Ù.
+				//doubleí˜•ìœ¼ë¡œ ì €ì¥í•œ ê³„ì‚°ê²°ê³¼ë¥¼ charí˜•ìœ¼ë¡œ ë³€í™˜í•œë‹¤.
 				_gcvt(_Rtmp, 13, _strResult);
-				//º¯È¯ÇÑ °ªÀ» ½ºÅÃ¿¡ pushÇÑ´Ù.
+				//ë³€í™˜í•œ ê°’ì„ ìŠ¤íƒì— pushí•œë‹¤.
 				_stack.Push(_stack.Create_stack(_strResult));
 				//_stack.Destroy_node(_ntmp1);
 				//_stack.Destroy_node(_ntmp2);
@@ -227,7 +227,7 @@ namespace nStack {
 			memset(_value, ' ', strlen(postfixvalue) + 1);
 			_type = -1;
 		}
-		//°á°ú°ªÀ» doubleÇüÀ¸·Î Ãâ·ÂÇÑ´Ù.
+		//ê²°ê³¼ê°’ì„ doubleí˜•ìœ¼ë¡œ ì¶œë ¥í•œë‹¤.
 		_result = atof(_stack.Pop()->mdata);
 		free(_value);
 		_stack.Destroy_stack();
